@@ -147,6 +147,16 @@ inputs:
     default: "rc"
     required: false
 
+  version-with-build-number:
+    description: "Should we append build number to version"
+    default: false
+    required: false
+
+  build-number:
+    description: "The number to append to version"
+    default: "1"
+    required: false
+
 outputs:
   changelog:
     description: "The generated changelog for the new version"

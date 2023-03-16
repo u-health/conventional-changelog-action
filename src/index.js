@@ -49,6 +49,8 @@ async function run() {
     const skipCi = core.getBooleanInput('skip-ci')
     const createSummary = core.getBooleanInput('create-summary')
     const prerelease = core.getBooleanInput('pre-release')
+    const appendBuildNumber = core.getBooleanInput('version-with-build-number')
+    const buildNumber = core.getInput('build-number')
 
     if (skipCi) {
       gitCommitMessage += ' [skip ci]'
@@ -67,6 +69,7 @@ async function run() {
     core.info(`Using "${gitUrl}" as gitUrl`)
     core.info(`Using "${gitBranch}" as gitBranch`)
     core.info(`Using "${gitPath}" as gitPath`)
+    core.info(`${appendBuildNumber?'Appending':'Ignoring'} build number ${buildNumber}`)
 
     if (preCommitFile) {
       core.info(`Using "${preCommitFile}" as pre-commit script`)

@@ -15,9 +15,14 @@ module.exports = async (releaseType, version) => {
 
   const prerelease = core.getBooleanInput('pre-release')
   const identifier = core.getInput('pre-release-identifier')
+  const appendBuildNumber = core.getBooleanInput('version-with-build-number')
+  const buildNumber = core.getInput('build-number')
 
   if (version) {
     newVersion = semver.inc(version, (prerelease ? 'prerelease' : releaseType), identifier)
+    if (appendBuildNumber) {
+      newVersion = `${newVersion}+${buildNumber}`
+    }
   } else {
 
     const fallbackVersion = core.getInput('fallback-version')
