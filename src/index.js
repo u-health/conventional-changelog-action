@@ -102,10 +102,7 @@ async function run() {
       let newVersion
       let oldVersion
 
-      // If skipVersionFile or skipCommit is true we use GIT to determine the new version because
-      // skipVersionFile can mean there is no version file and skipCommit can mean that the user
-      // is only interested in tags
-      if (skipVersionFile || skipCommit) {
+      if (skipVersionFile) {
         core.info('Using GIT to determine the new version')
         const versioning = await handleVersioningByExtension(
           'git',
